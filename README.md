@@ -1,15 +1,10 @@
-点我达中台组件库
+refine Form
 
-### Simple Philosophy
+### Philosophy
 
-* 中台业务组件统一化，便于轮岗
-* 可视化文档，便于查阅
-* 完善单测，便于第三方库的升级
-* 基于 TypeScrit + antd
-
-### Progress
-
-启动中
+* Form 组件上带有表单的 scheme 映射
+* 一个表单下错误逻辑集中化管理
+* 兼容 antd 组件
 
 ### Usage
 
