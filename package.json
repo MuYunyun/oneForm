@@ -1,5 +1,5 @@
 {
-  "name": "d-form",
+  "name": "reform",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -8,10 +8,10 @@
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
+    "antd": "^3.10.4",
     "typescript": "^3.1.3"
   },
   "dependencies": {
-    "antd": "^3.10.4",
     "autoprefixer": "7.1.6",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
@@ -99,12 +99,7 @@
       "json",
       "node",
       "mjs"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "/Users/mac/DStarMan/Dui-PC/tsconfig.test.json"
-      }
-    }
+    ]
   },
   "babel": {
     "presets": [

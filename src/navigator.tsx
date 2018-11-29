@@ -23,8 +23,8 @@ class Navigator extends React.Component<any, any> {
         selectedKeys={[this.state.current]}
         mode="inline"
       >
-        <MenuItem key='组件一'><Link to="zujian1">组件一</Link></MenuItem>
-        <MenuItem key='组件二'><Link to="zujian2">组件二</Link></MenuItem>
+        <MenuItem key='示例一'><Link to="demo1">示例一</Link></MenuItem>
+        <MenuItem key='示例二'><Link to="demo2">示例二</Link></MenuItem>
       </Menu>
     )
   }
