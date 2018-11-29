@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
 
-class Zujian1 extends PureComponent {
+class Demo2 extends PureComponent {
   render() {
     return (
       <div>
-        123
+        456
       </div>
     )
   }
 }
 
-export default Zujian1
+export default Demo2
