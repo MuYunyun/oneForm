@@ -1,0 +1,49 @@
+Arguments: 
+  /Users/mac/.nvm/versions/node/v9.11.0/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add --dev jest enzyme
+
+PATH: 
+  /Users/mac/.nvm/versions/node/v9.11.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/aria2/bin:/usr/local/bin:/Users/mac/DStarMan/tools/apache-maven-3.3.9/bin
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  9.11.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: connect ECONNREFUSED 60.191.68.46:7001
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1174:14)
+
+npm manifest: 
+  {
+    "name": "dui-pro",
+    "version": "0.0.1",
+    "description": "点我达中台UI组件库",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/dwd-fe/dui-pro.git"
+    },
+    "keywords": [
+      "React",
+      "中台组件"
+    ],
+    "author": "dwd-fe",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/dwd-fe/dui-pro/issues"
+    },
+    "homepage": "https://github.com/dwd-fe/dui-pro#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
