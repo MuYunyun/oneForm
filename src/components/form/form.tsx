@@ -1,12 +1,18 @@
 import * as React from 'react'
-import { formContext } from '../core/context'
+import FormContext from '../core/Context'
+import FormData from '../core/formData'
+
+const formData = new FormData()
 
 function Form() {
   return (WrapperComponent: any) => {
     return class extends React.Component {
-      static contextType = formContext
       render() {
-        return <WrapperComponent form={this.context} />
+        return (
+          <FormContext.Provider value={formData}>
+            <WrapperComponent form={formData} />
+          </FormContext.Provider>
+        )
       }
     }
   }
