@@ -1,15 +1,31 @@
 import * as React from 'react';
-import { formContext } from '../core/context'
+import FormContext from '../core/Context'
 
 class FormItem extends React.Component {
-  state = {
-    value: ''
+  static contextType = FormContext
+
+  onChange = (e: any) => {
+    const { name } = this.props
+    if (!name) {
+      throw new Error('please check the prop name in the FormItem')
+    }
+    this.context.setFormItem(name, e.target.value)
   }
 
   render() {
-    console.log('123')
+    const { children } = this.props
+
+    let formItem: any
+    const props = {
+      // value,
+      onChange: this.onChange,
+    }
+    if (React.Children.only(children)) {
+      formItem = React.cloneElement(children, props)
+    }
+
     return (
-      this.props.children
+      formItem
     )
   }
 }
