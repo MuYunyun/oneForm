@@ -1,11 +1,4 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import registerServiceWorker from './registerServiceWorker'
-import Routes from './route'
-import './index.less'
+import Form from './form/form'
+import FormItem from './form/formItem'
 
-ReactDOM.render(
-  <Routes />,
-  document.getElementById('dui-antd-container') as HTMLElement
-)
-registerServiceWorker()
+export { Form, FormItem }
