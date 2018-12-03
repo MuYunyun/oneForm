@@ -1,6 +1,4 @@
-## redefine Form
-
-针对表单的 one for all 方案。
+reform 是针对表单开发所产生的 one for all 方案
 
 ### Philosophy
 
@@ -11,6 +9,4 @@
 
 ### Usage
 
-```
-npm start: 本地打开 demo
-```
+开发中, `npm start` 可看效果

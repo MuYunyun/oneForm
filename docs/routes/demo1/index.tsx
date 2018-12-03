@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Form, FormItem } from '../../components'
-import { Input, Button } from 'antd'
+import { Form, FormItem } from '../../../src'
+import { Input } from 'antd'
 import HandlePreView from './handlePreView'
 
 @Form()
-class Demo1 extends React.Component {
+class Demo1 extends React.Component<any, any> {
   render() {
     const { form } = this.props
     return (

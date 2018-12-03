@@ -1,19 +1,20 @@
 import * as React from 'react';
 import FormContext from '../core/Context'
 
-class FormItem extends React.Component {
+class FormElement extends React.Component<any, any> {
   static contextType = FormContext
 
   onChange = (e: any) => {
     const { name } = this.props
     if (!name) {
-      throw new Error('please check the prop name in the FormItem')
+      throw new Error('please check the prop name in the FormElement')
     }
     this.context.setFormItem(name, e.target.value)
   }
 
   render() {
-    const { children } = this.props
+    const { children , label } = this.props
+    const childrenAsElement = children as React.ReactElement<any>
 
     let formItem: any
     const props = {
@@ -21,13 +22,16 @@ class FormItem extends React.Component {
       onChange: this.onChange,
     }
     if (React.Children.only(children)) {
-      formItem = React.cloneElement(children, props)
+      formItem = React.cloneElement(childrenAsElement, props)
     }
 
     return (
-      formItem
+      <>
+        { label }
+        { formItem }
+      </>
     )
   }
 }
 
-export default FormItem
+export default FormElement

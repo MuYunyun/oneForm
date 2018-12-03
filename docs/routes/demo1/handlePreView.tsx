@@ -4,7 +4,6 @@ import PreView from '../preview'
 
 const jsxString =
 `import { Form, FormItem } from 'reform'
-
 @Form()
 class Demo1 extends React.Component {
   render() {
@@ -17,7 +16,7 @@ class Demo1 extends React.Component {
   }
 }`
 
-class HandlePreView extends React.Component {
+class HandlePreView extends React.Component<any, any> {
   click = () => {
     const { form } = this.props
     const { formdata } = form

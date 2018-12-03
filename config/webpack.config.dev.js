@@ -17,7 +17,6 @@ const env = getClientEnvironment(publicUrl);
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: [
-    require.resolve('./polyfills'),
     require.resolve('react-dev-utils/webpackHotDevClient'),
     paths.appIndexJs,
   ],
@@ -61,7 +60,7 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),
         enforce: 'pre',
-        include: paths.appSrc,
+        include: [paths.appDocs, paths.src],
       },
       {
         oneOf: [
@@ -75,7 +74,7 @@ module.exports = {
           },
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include: [paths.appDocs, paths.src],
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
@@ -86,7 +85,7 @@ module.exports = {
           },
           {
             test: /\.(ts|tsx)$/,
-            include: paths.appSrc,
+            include: [paths.appDocs, paths.src],
             use: [
               {
                 loader: require.resolve('ts-loader'),
