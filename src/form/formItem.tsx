@@ -1,5 +1,7 @@
 import * as React from 'react';
+import * as classnames from 'classnames'
 import FormContext from '../core/Context'
+import './index.less'
 
 class FormElement extends React.Component<any, any> {
   static contextType = FormContext
@@ -13,7 +15,7 @@ class FormElement extends React.Component<any, any> {
   }
 
   render() {
-    const { children , label } = this.props
+    const { children, label, colon = true } = this.props
     const childrenAsElement = children as React.ReactElement<any>
 
     let formItem: any
@@ -27,8 +29,10 @@ class FormElement extends React.Component<any, any> {
 
     return (
       <>
-        { label }
-        { formItem }
+        <span>{ label }</span>{ colon ? ':' : '' }
+        <span className={classnames({
+          'reform-item-label': true,
+        })}>{ formItem }</span>
       </>
     )
   }

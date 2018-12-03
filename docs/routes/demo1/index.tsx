@@ -9,7 +9,8 @@ class Demo1 extends React.Component<any, any> {
     const { form } = this.props
     return (
       <>
-        <FormItem name="a" label="a"><Input /></FormItem>
+        <FormItem name="name" label="姓名"><Input /></FormItem>
+        <FormItem name="old" label="年龄"><Input /></FormItem>
         <HandlePreView form={form} />
       </>
     )
