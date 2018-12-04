@@ -1,11 +1,13 @@
-reform 是针对表单开发所产生的 one for all 方案
+reform 定义为针对表单开发的 one for all 容器, 借助其能高效完成表单需求的开发。
 
 ### Philosophy
 
-* Form 组件带有表单的 scheme 映射
+* 不依赖第三方状态管理库
+* 提供动态表单的解决方案
 * 错误逻辑集中化管理
-* 兼容 antd 和其它 UI 组件库
-* 打造动态表单的解决方案
+* 表单数据的动态映射
+* 暂时只兼容 antd 组件库
+* 栅格化布局
 
 ### Basic Usage
 
