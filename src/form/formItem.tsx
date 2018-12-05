@@ -15,7 +15,8 @@ class FormElement extends React.Component<any, any> {
     if (!name) {
       throw new Error('please check the prop name in the FormElement')
     }
-    this.context.setFormItem(name, e.target.value)
+    this.context.formData.setFormItem(name, e.target.value)
+    this.context.changeFormData(this.context.formData)
     // this.forceUpdate()
   }
 
@@ -25,7 +26,7 @@ class FormElement extends React.Component<any, any> {
 
     let formItem: any
     const props = {
-      value: this.context.getFormItem(name),
+      value: this.context.formData.getFormItem(name),
       onChange: this.onChange,
     }
     if (React.Children.only(children)) {
@@ -33,15 +34,19 @@ class FormElement extends React.Component<any, any> {
     }
 
     return (
-      <div>
-        <span className={classnames({
-          [`col-${labelCol}`]: true,
-        })}>{label}{colon ? ':' : ''}</span>
-        <span className={classnames({
-          'reform-item-label': true,
-          [`col-${wrapCol}`]: true
-        })}>{ formItem }</span>
-      </div>
+      <FormContext.Consumer>
+        {formData => (
+          <div>
+            <span className={classnames({
+              [`col-${labelCol}`]: true,
+            })}>{label}{colon ? ':' : ''}</span>
+            <span className={classnames({
+              'reform-item-label': true,
+              [`col-${wrapCol}`]: true
+            })}>{formItem}</span>
+          </div>
+        )}
+      </FormContext.Consumer>
     )
   }
 }

@@ -26,7 +26,7 @@ function Home() {
           </Content>
         </Layout>
       </Content>
-      <Footer className='text-center'>@2018 Dianwoda</Footer>
+      {/* <Footer className='text-center'>@2018 Dianwoda</Footer> */}
     </Layout>
   )
 }
