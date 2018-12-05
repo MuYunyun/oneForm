@@ -7,10 +7,21 @@ const formData = new FormData()
 function Form() {
   return (WrapperComponent: any) => {
     return class extends React.Component {
+      changeFormData = (formData: any) => {
+        this.setState({
+          formData,
+        })
+      }
+
+      state = {
+        formData,
+        changeFormData: this.changeFormData,
+      }
+
       render() {
         return (
-          <FormContext.Provider value={formData}>
-            <WrapperComponent form={formData} />
+          <FormContext.Provider value={this.state}>
+            <WrapperComponent form={this.state.formData} />
           </FormContext.Provider>
         )
       }

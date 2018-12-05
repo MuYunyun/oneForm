@@ -17,7 +17,7 @@ class FormData {
 
   getFormItem(name?: string) {
     if (name) {
-      return this.formdata.name
+      return this.formdata[name]
     } else {
       return this.formdata
     }
