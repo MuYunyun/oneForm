@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 import { Route } from 'react-router'
 import './index.less'
 import Navigator from './navigator'
+import Philosophy from './routes/philosophy/index'
 import Demo1 from './routes/demo1/index'
 import Demo2 from './routes/demo2/index'
+// import Demo3 from './routes/demo3/index'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -21,6 +23,7 @@ function Home() {
             <Navigator />
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
+            <Route path="/philosophy" component={Philosophy} />
             <Route path="/demo1" component={Demo1} />
             <Route path="/demo2" component={Demo2} />
           </Content>

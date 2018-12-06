@@ -21,7 +21,7 @@ function Form() {
       render() {
         return (
           <FormContext.Provider value={this.state}>
-            <WrapperComponent form={this.state.formData} />
+            <WrapperComponent form={this.state.formData} {...this.props} />
           </FormContext.Provider>
         )
       }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PreView from '../preview'
 
 const jsxString =
-`import React from 'react'
+  `import React from 'react'
 import { Input } from 'antd' // 可以是其它 UI 库
 import { Form, FormItem } from 'reform'
 
@@ -20,13 +20,8 @@ class Demo1 extends React.Component {
 
 class HandlePreView extends React.Component<any, any> {
   render() {
-    const { form } = this.props
-    const { formdata } = form
     return (
       <>
-        <pre className="code-background">
-          { JSON.stringify(formdata, null, 2) }
-        </pre>
         <PreView jsxString={jsxString} />
       </>
     )

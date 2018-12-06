@@ -17,11 +17,18 @@ class FormElement extends React.Component<any, any> {
     }
     this.context.formData.setFormItem(name, e.target.value)
     this.context.changeFormData(this.context.formData)
-    // this.forceUpdate()
   }
 
   render() {
-    const { children, name, label, colon = true, labelCol = 8, wrapCol = 16 } = this.props
+    const {
+      children,
+      name,
+      label,
+      colon = true,
+      labelCol = 8,
+      wrapCol = 16,
+      inline = false,
+    } = this.props
     const childrenAsElement = children as React.ReactElement<any>
 
     let formItem: any
@@ -31,19 +38,32 @@ class FormElement extends React.Component<any, any> {
     }
     if (React.Children.only(children)) {
       formItem = React.cloneElement(childrenAsElement, props)
+    } else {
+      throw new Error('There is must a form element after FormItem')
     }
 
     return (
       <FormContext.Consumer>
         {formData => (
-          <div>
-            <span className={classnames({
-              [`col-${labelCol}`]: true,
-            })}>{label}{colon ? ':' : ''}</span>
-            <span className={classnames({
+          <div className={classnames({
+            'reform-item': true,
+            'reform-item-inline': inline
+          })}>
+            <section className={classnames({ // label
               'reform-item-label': true,
+              [`col-${labelCol}`]: true,
+            })}>
+              <span className={classnames({
+                'reform-item-label-text': true,
+              })}>{label}{colon ? ':' : ''}</span>
+            </section>
+            <section className={classnames({ // wrap
+              'reform-item-wrap': true,
               [`col-${wrapCol}`]: true
-            })}>{formItem}</span>
+            })}>
+              <div>{formItem}</div>
+              <div className="reform-item-wrap-error">123</div>
+            </section>
           </div>
         )}
       </FormContext.Consumer>

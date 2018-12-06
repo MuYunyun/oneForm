@@ -3,9 +3,9 @@ import './index.less'
 
 class Background extends React.Component<any, any> {
   render() {
-    const { color } = this.props
+    const { color, width } = this.props
     return (
-      <div className="background" style={{ 'backgroundColor': color }}>
+      <div className="space" style={{ 'backgroundColor': color, 'width': width, }}>
         { this.props.children }
       </div>
     );
