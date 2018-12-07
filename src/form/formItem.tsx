@@ -3,7 +3,7 @@ import * as classnames from 'classnames'
 import FormContext from '../core/Context'
 import './index.less'
 
-class FormElement extends React.Component<any, any> {
+class FormElement extends React.PureComponent<any, any> {
   static contextType = FormContext
 
   state = {
@@ -41,31 +41,37 @@ class FormElement extends React.Component<any, any> {
     } else {
       throw new Error('There is must a form element after FormItem')
     }
+    let errorMsg = ''
 
     return (
       <FormContext.Consumer>
-        {formData => (
-          <div className={classnames({
-            'reform-item': true,
-            'reform-item-inline': inline
-          })}>
-            <section className={classnames({ // label
-              'reform-item-label': true,
-              [`col-${labelCol}`]: true,
+        {global => {
+          if (global.errorInfo && global.errorInfo[name] && global.errorInfo[name][0]) {
+            errorMsg = global.errorInfo[name][0].message
+          }
+          return (
+            <div className={classnames({
+              'reform-item': true,
+              'reform-item-inline': inline
             })}>
-              <span className={classnames({
-                'reform-item-label-text': true,
-              })}>{label}{colon ? ':' : ''}</span>
-            </section>
-            <section className={classnames({ // wrap
-              'reform-item-wrap': true,
-              [`col-${wrapCol}`]: true
-            })}>
-              <div>{formItem}</div>
-              <div className="reform-item-wrap-error">123</div>
-            </section>
-          </div>
-        )}
+              <section className={classnames({ // label
+                'reform-item-label': true,
+                [`col-${labelCol}`]: true,
+              })}>
+                <span className={classnames({
+                  'reform-item-label-text': true,
+                })}>{label}{colon ? ':' : ''}</span>
+              </section>
+              <section className={classnames({ // wrap
+                'reform-item-wrap': true,
+                [`col-${wrapCol}`]: true
+              })}>
+                <div>{formItem}</div>
+                <div className="reform-item-wrap-error">{errorMsg}</div>
+              </section>
+            </div>
+          )
+        }}
       </FormContext.Consumer>
     )
   }
