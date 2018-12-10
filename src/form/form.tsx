@@ -1,22 +1,17 @@
 import * as React from 'react'
-import AsyncValidator from 'async-validator'
 import FormContext from '../core/Context'
 import FormData from '../core/formData'
+import validate from '../validate'
 
 const formData = new FormData()
 
 function Form(validateConfig: any) {
   return (WrapperComponent: any) => {
-    const validator = new AsyncValidator(validateConfig || {})
-    let errorInfo: any = null
+    let errorInfo: object = {}
     return class extends React.Component {
-
-      changeFormData = (formData: any) => {
-        validator.validate({ ...formData.formdata }, (errors: any, fields: any) => {
-          errorInfo = fields
-        })
+      changeFormData = (changeData: any) => {
+        errorInfo = Object.assign(errorInfo, validate(validateConfig, changeData))
         this.setState({
-          formData,
           errorInfo,
         })
       }
@@ -30,7 +25,7 @@ function Form(validateConfig: any) {
       render() {
         return (
           <FormContext.Provider value={this.state}>
-            <WrapperComponent form={this.state.formData} {...this.props} />
+            <WrapperComponent form={formData} {...this.props} />
           </FormContext.Provider>
         )
       }

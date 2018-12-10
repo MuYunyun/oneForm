@@ -11,10 +11,10 @@ class FormContent extends React.PureComponent<any, any> {
       labelCol = 8,
       wrapCol = 16,
       inline = false,
-      // errorMsg,
+      errorMsg,
       formItem,
     } = this.props
-    console.log('FormContent')
+    console.log('formContentRender')
     return (
       <div className={classnames({
         'reform-item': true,
@@ -33,7 +33,7 @@ class FormContent extends React.PureComponent<any, any> {
           [`col-${wrapCol}`]: true
         })}>
           <div>{formItem}</div>
-          {/* <div className="reform-item-wrap-error">{errorMsg}</div> */}
+          <div className="reform-item-wrap-error">{errorMsg}</div>
         </section>
       </div>
     )
@@ -58,12 +58,10 @@ class FormElement extends React.PureComponent<any, any> {
       throw new Error('please check the prop name in the FormElement')
     }
     this.context.formData.setFormItem(name, e.target.value)
-    this.context.changeFormData(this.context.formData)
+    this.context.changeFormData({
+      [name]: e.target.value,
+    })
   }
-
-  // getDerivedStateFromProps(nextProps: any, prevState: any) {
-  //   if (nextProps.value !== prevState)
-  // }
 
   render() {
     let errorMsg = ''
@@ -77,15 +75,18 @@ class FormElement extends React.PureComponent<any, any> {
       children,
     } = this.props
 
-    const value = this.context.formData.getFormItem(name)
+    const { value, ifChange } = this.context.formData.getFormItem(name)
 
     const childrenAsElement = children as React.ReactElement<any>
     const formProps = {
       value,
       onChange: this.onChange,
     }
-    if (React.Children.only(children)) {
+    if (React.Children.only(children) && ifChange) {
       FormElement.formItem = React.cloneElement(childrenAsElement, formProps)
+      this.context.formData.setMappingDom(name, FormElement.formItem)
+    } else if (ifChange === false) {
+      FormElement.formItem = this.context.formData.getMappingDom(name)
     } else {
       throw new Error('There is must a form element after FormItem')
     }
@@ -104,7 +105,7 @@ class FormElement extends React.PureComponent<any, any> {
               labelCol={labelCol}
               wrapCol={wrapCol}
               inline={inline}
-              // errorMsg={errorMsg}
+              errorMsg={errorMsg}
               formItem={FormElement.formItem}
             />
           )

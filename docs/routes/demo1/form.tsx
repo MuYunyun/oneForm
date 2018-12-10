@@ -9,6 +9,7 @@ import validateConfig from './validate'
 class Demo1 extends React.Component<any, any> {
   render() {
     const { form } = this.props
+    console.log('Demo1', form)
     return (
       <>
         <BackGround color="#e9e9c8">
