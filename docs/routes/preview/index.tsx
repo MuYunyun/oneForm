@@ -7,7 +7,6 @@ class PreView extends React.Component<any, any> {
     const { jsxString } = this.props
     return (
       <>
-        <br /><br />
         <pre className="code-background"><code
           dangerouslySetInnerHTML={{ __html: Prism.highlight(jsxString, Prism.languages.javascript) }}>
         </code></pre>

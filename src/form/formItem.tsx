@@ -3,11 +3,53 @@ import * as classnames from 'classnames'
 import FormContext from '../core/Context'
 import './index.less'
 
-class FormElement extends React.Component<any, any> {
+class FormContent extends React.PureComponent<any, any> {
+  render() {
+    const {
+      label,
+      colon = true,
+      labelCol = 8,
+      wrapCol = 16,
+      inline = false,
+      errorMsg,
+      formItem,
+    } = this.props
+    console.log('formContentRender')
+    return (
+      <div className={classnames({
+        'reform-item': true,
+        'reform-item-inline': inline
+      })}>
+        <section className={classnames({ // label
+          'reform-item-label': true,
+          [`col-${labelCol}`]: true,
+        })}>
+          <span className={classnames({
+            'reform-item-label-text': true,
+          })}>{label}{colon ? ':' : ''}</span>
+        </section>
+        <section className={classnames({ // wrap
+          'reform-item-wrap': true,
+          [`col-${wrapCol}`]: true
+        })}>
+          <div>{formItem}</div>
+          <div className="reform-item-wrap-error">{errorMsg}</div>
+        </section>
+      </div>
+    )
+  }
+}
+
+class FormElement extends React.PureComponent<any, any> {
+  static formItem = null
   static contextType = FormContext
 
-  state = {
-    value: ''
+  constructor(props: any) {
+    super(props)
+
+    this.state = {
+      value: '',
+    }
   }
 
   onChange = (e: any) => {
@@ -16,36 +58,58 @@ class FormElement extends React.Component<any, any> {
       throw new Error('please check the prop name in the FormElement')
     }
     this.context.formData.setFormItem(name, e.target.value)
-    this.context.changeFormData(this.context.formData)
-    // this.forceUpdate()
+    this.context.changeFormData({
+      [name]: e.target.value,
+    })
   }
 
   render() {
-    const { children, name, label, colon = true, labelCol = 8, wrapCol = 16 } = this.props
-    const childrenAsElement = children as React.ReactElement<any>
+    let errorMsg = ''
+    const {
+      name,
+      label,
+      colon,
+      labelCol,
+      wrapCol,
+      inline,
+      children,
+    } = this.props
 
-    let formItem: any
-    const props = {
-      value: this.context.formData.getFormItem(name),
+    const { value, ifChange } = this.context.formData.getFormItem(name)
+
+    const childrenAsElement = children as React.ReactElement<any>
+    const formProps = {
+      value,
       onChange: this.onChange,
     }
-    if (React.Children.only(children)) {
-      formItem = React.cloneElement(childrenAsElement, props)
+    if (React.Children.only(children) && ifChange) {
+      FormElement.formItem = React.cloneElement(childrenAsElement, formProps)
+      this.context.formData.setMappingDom(name, FormElement.formItem)
+    } else if (ifChange === false) {
+      FormElement.formItem = this.context.formData.getMappingDom(name)
+    } else {
+      throw new Error('There is must a form element after FormItem')
     }
 
     return (
       <FormContext.Consumer>
-        {formData => (
-          <div>
-            <span className={classnames({
-              [`col-${labelCol}`]: true,
-            })}>{label}{colon ? ':' : ''}</span>
-            <span className={classnames({
-              'reform-item-label': true,
-              [`col-${wrapCol}`]: true
-            })}>{formItem}</span>
-          </div>
-        )}
+        {global => {
+          if (global.errorInfo && global.errorInfo[name] && global.errorInfo[name][0]) {
+            errorMsg = global.errorInfo[name][0].message
+          }
+          console.log('FormContext.Consumer', this.props)
+          return (
+            <FormContent
+              label={label}
+              colon={colon}
+              labelCol={labelCol}
+              wrapCol={wrapCol}
+              inline={inline}
+              errorMsg={errorMsg}
+              formItem={FormElement.formItem}
+            />
+          )
+        }}
       </FormContext.Consumer>
     )
   }
