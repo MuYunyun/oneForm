@@ -13,18 +13,18 @@ class FormData {
     this.formdata = {}  // 对外暴露
   }
 
-  setFormItem(name: string, value: any) {
-    this._formdata[name].value = value
-    this._formdata[name].ifChange = true
-    this.formdata[name] = value
+  setFormItem(itemName: string, value: any) {
+    this._formdata[itemName].value = value
+    this._formdata[itemName].ifChange = true
+    this.formdata[itemName] = value
   }
 
-  getFormItem(name?: string) {
-    if (name) {
-      if (this._formdata[name]) {
-        return this._formdata[name]
+  getFormItem(itemName?: string) {
+    if (itemName) {
+      if (this._formdata[itemName]) {
+        return this._formdata[itemName]
       } else {
-        return this._formdata[name] = {
+        return this._formdata[itemName] = {
           value: '',
           ifChange: true,
         }
@@ -34,13 +34,15 @@ class FormData {
     }
   }
 
-  setMappingDom(name: string, formDom: object) {
-    this._formdata[name].formDom = formDom
-    this._formdata[name].ifChange = false
+  setMappingValue = (itemName: string) => (name: string, value: any) => {
+    this._formdata[itemName][name] = value
+    if (name === 'domMapping') {
+      this._formdata[itemName].ifChange = false
+    }
   }
 
-  getMappingDom(name: string) {
-    return this._formdata[name].formDom
+  getMappingValue = (itemName: string) => (name: string) => {
+    return this.getFormItem(itemName)[name]
   }
 }
 

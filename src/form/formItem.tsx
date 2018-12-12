@@ -1,44 +1,7 @@
 import * as React from 'react';
-import * as classnames from 'classnames'
 import FormContext from '../core/Context'
+import FormContent from './formContent'
 import './index.less'
-
-class FormContent extends React.PureComponent<any, any> {
-  render() {
-    const {
-      label,
-      colon = true,
-      labelCol = 8,
-      wrapCol = 16,
-      inline = false,
-      errorMsg,
-      formItem,
-    } = this.props
-    console.log('formContentRender')
-    return (
-      <div className={classnames({
-        'reform-item': true,
-        'reform-item-inline': inline
-      })}>
-        <section className={classnames({ // label
-          'reform-item-label': true,
-          [`col-${labelCol}`]: true,
-        })}>
-          <span className={classnames({
-            'reform-item-label-text': true,
-          })}>{label}{colon ? ':' : ''}</span>
-        </section>
-        <section className={classnames({ // wrap
-          'reform-item-wrap': true,
-          [`col-${wrapCol}`]: true
-        })}>
-          <div>{formItem}</div>
-          <div className="reform-item-wrap-error">{errorMsg}</div>
-        </section>
-      </div>
-    )
-  }
-}
 
 class FormElement extends React.PureComponent<any, any> {
   static formItem = null
@@ -46,7 +9,6 @@ class FormElement extends React.PureComponent<any, any> {
 
   constructor(props: any) {
     super(props)
-
     this.state = {
       value: '',
     }
@@ -73,6 +35,7 @@ class FormElement extends React.PureComponent<any, any> {
       wrapCol,
       inline,
       children,
+      disabled,
     } = this.props
 
     const { value, ifChange } = this.context.formData.getFormItem(name)
@@ -80,13 +43,15 @@ class FormElement extends React.PureComponent<any, any> {
     const childrenAsElement = children as React.ReactElement<any>
     const formProps = {
       value,
+      disabled,
       onChange: this.onChange,
     }
-    if (React.Children.only(children) && ifChange) {
+    if (React.Children.only(children) && (ifChange || this.context.formData.getMappingValue(name)('disabled') !== disabled)) {
       FormElement.formItem = React.cloneElement(childrenAsElement, formProps)
-      this.context.formData.setMappingDom(name, FormElement.formItem)
-    } else if (ifChange === false) {
-      FormElement.formItem = this.context.formData.getMappingDom(name)
+      this.context.formData.setMappingValue(name)('disabled', disabled)
+      this.context.formData.setMappingValue(name)('domMapping', FormElement.formItem)
+    } else if (React.Children.only(children) && ifChange === false) {
+      FormElement.formItem = this.context.formData.getMappingValue(name)('domMapping')
     } else {
       throw new Error('There is must a form element after FormItem')
     }

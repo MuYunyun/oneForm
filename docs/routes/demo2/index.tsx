@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { Input, Button, message } from 'antd'
 import BackGround from '../../components/Background/background'
 import './index.less'
 import { Form, FormItem } from '../../../src'
-import { Input, Button, message } from 'antd'
 import HandlePreView from './handlePreview2'
+import validate from './validate'
 
-@Form()
+@Form(validate)
 class Demo2 extends React.Component<any, any> {
   click = () => {
     const { form } = this.props
