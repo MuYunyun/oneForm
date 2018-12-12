@@ -10,36 +10,23 @@ class Controller extends React.Component<any, any> {
     wrapCol: 19,
     inline: true,
     colon: true,
+    disabled: false,
   }
 
-  changeLabelCol = (e: any) => {
+  changeValue = (name: string) => (e: any) => {
     this.setState({
-      labelCol: e.target.value,
+      [name]: e.target.value,
     })
   }
 
-  changeWrapCol = (e: any) => {
+  changeStatus = (name: string) => (e: any) => {
     this.setState({
-      wrapCol: e.target.value,
-    })
-  }
-
-  changeInline = (e: any) => {
-    const { inline } = this.state
-    this.setState({
-      inline: !inline,
-    })
-  }
-
-  changeColon = (e: any) => {
-    const { colon } = this.state
-    this.setState({
-      colon: !colon,
+      [name]: !this.state[name]
     })
   }
 
   render() {
-    const { labelCol, wrapCol, inline, colon } = this.state
+    const { labelCol, wrapCol, inline, colon, disabled } = this.state
     return (
       <>
         <BackGround color="#e9e9c8">
@@ -47,25 +34,31 @@ class Controller extends React.Component<any, any> {
             <Col span={3} className="control-col">
               <span>labelCol:</span>
               <span className="reform-controller-config">
-                <Input type="number" value={labelCol} onChange={this.changeLabelCol} />
+                <Input type="number" value={labelCol} onChange={this.changeValue('labelCol')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>wrapCol:</span>
               <span className="reform-controller-config">
-                <Input type="number" value={wrapCol} onChange={this.changeWrapCol} />
+                <Input type="number" value={wrapCol} onChange={this.changeValue('wrapCol')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>inline:</span>
               <span className="reform-controller-config">
-                <Checkbox checked={inline} onChange={this.changeInline} />
+                <Checkbox checked={inline} onChange={this.changeStatus('inline')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>colon:</span>
               <span className="reform-controller-config">
-                <Checkbox checked={colon} onChange={this.changeColon} />
+                <Checkbox checked={colon} onChange={this.changeStatus('colon')} />
+              </span>
+            </Col>
+            <Col span={3} className="control-col">
+              <span>disabled:</span>
+              <span className="reform-controller-config">
+                <Checkbox checked={disabled} onChange={this.changeStatus('disabled')} />
               </span>
             </Col>
           </Row>
@@ -75,6 +68,7 @@ class Controller extends React.Component<any, any> {
           wrapCol={wrapCol}
           inline={inline}
           colon={colon}
+          disabled={disabled}
         />
       </>
     )
