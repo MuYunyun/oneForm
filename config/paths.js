@@ -38,7 +38,6 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
-// config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appBuildDoc: resolveApp('builddoc'),
@@ -51,7 +50,7 @@ module.exports = {
   libBuild: resolveApp('lib'),
   libIndexJs: resolveApp('src/index.tsx'),
   yarnLockFile: resolveApp('yarn.lock'),
-  // testsSetup: resolveApp('docs/setupTests.ts'),
+  testsSetup: resolveApp('test/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp('tsconfig.json'),
   appTsProdConfig: resolveApp('tsconfig.prod.json'),

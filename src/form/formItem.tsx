@@ -38,6 +38,10 @@ class FormElement extends React.PureComponent<any, any> {
       disabled,
     } = this.props
 
+    if (!name) {
+      throw new Error('please check the prop name in the FormElement')
+    }
+
     const { value, ifChange } = this.context.formData.getFormItem(name)
 
     const childrenAsElement = children as React.ReactElement<any>
@@ -62,7 +66,7 @@ class FormElement extends React.PureComponent<any, any> {
           if (global.errorInfo && global.errorInfo[name] && global.errorInfo[name][0]) {
             errorMsg = global.errorInfo[name][0].message
           }
-          console.log('FormContext.Consumer', this.props)
+          console.log('FormContext.Consumer')
           return (
             <FormContent
               label={label}
