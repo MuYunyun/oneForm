@@ -45,11 +45,11 @@ class Demo1 extends React.Component {
 
 | 属性 | 意义 | 必填 | 默认 |
 | :-: | :-: | :-: | :-: |
-| name | 表单传输的名字 | 是 |  |
-| label | 表单的名字 | 否 | '' |
-| colon | 是否带分号 | 否 | 是 |
-| inline | 是否内联 | 否 | false |
-| labelCol | 表单的名字占位 | 否 | 8 |
-| wrapCol | 表单占位 | 否 | 16 |
-| disable | 是否禁用 | 否 | 否 |
+| name | 表单传输的名字 | yes |  |
+| label | 表单的名字 | no | '' |
+| colon | 是否带分号 | no | true |
+| inline | 是否内联 | no | false |
+| labelCol | 表单的名字占位 | no | 8 |
+| wrapCol | 表单占位 | no | 16 |
+| disable | 是否禁用 | no | false |
 
