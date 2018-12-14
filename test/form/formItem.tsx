@@ -1,0 +1,90 @@
+import * as React from 'react'
+import * as sinon from 'sinon'
+import { mount } from 'enzyme'
+import { Form, FormItem } from '../../src'
+import { Input } from 'antd'
+
+describe('component/form basic function', () => {
+  let Demo: any
+  // 错误边界校验
+  // it('FormItem should throw error if not pass name', () => {
+  //   Demo = function () {
+  //     return <FormItem><Input /></FormItem>
+  //   }
+
+  //   Demo = Form()(Demo)
+
+  //   const styleForm = mount(<Demo />)
+  //   expect(styleForm.contains(<div>Error: please check the prop name in the FormElement</div>)).toEqual(true)
+  // })
+  it('FormItem should support style', () => {
+    Demo = function() {
+      return <FormItem name="name" style={{ marginBottom: 16 }}><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item').prop('style')).toEqual({ marginBottom: 16 })
+  })
+  it('FormItem should support label true', () => {
+    Demo = function () {
+      return <FormItem name="name" label="姓名"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item-label-text').contains('姓名:')).toEqual(true)
+  })
+  it('FormItem should support colon config false', () => {
+    Demo = function () {
+      return <FormItem name="name" label="姓名" colon={false}><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item-label-text').contains('姓名')).toEqual(true)
+  })
+  it('FormItem should support inline', () => {
+    Demo = function () {
+      return <FormItem name="name" inline="true"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item-inline').prop('className')).toEqual('reform-item reform-item-inline')
+  })
+  it('FormItem should support labelCol', () => {
+    Demo = function () {
+      return <FormItem name="name" labelCol="6"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item-label').prop('className')).toEqual('reform-item-label col-6')
+  })
+  it('FormItem should support wrapCol', () => {
+    Demo = function () {
+      return <FormItem name="name" wrapCol="15"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find('.reform-item-wrap').prop('className')).toEqual('reform-item-wrap col-15')
+  })
+  it('FormItem should support disable', () => {
+    Demo = function () {
+      return <FormItem name="name"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const styleForm = mount(<Demo />)
+    expect(styleForm.find(Input).prop('disabled')).toEqual(false)
+  })
+})

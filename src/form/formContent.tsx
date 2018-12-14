@@ -4,6 +4,7 @@ import * as classnames from 'classnames'
 class FormContent extends React.PureComponent<any, any> {
   render() {
     const {
+      style,
       label,
       colon = true,
       labelCol = 8,
@@ -12,9 +13,8 @@ class FormContent extends React.PureComponent<any, any> {
       errorMsg,
       formItem,
     } = this.props
-    console.log('formContentRender')
     return (
-      <div className={classnames({
+      <div style={style} className={classnames({
         'reform-item': true,
         'reform-item-inline': inline
       })}>
@@ -24,7 +24,7 @@ class FormContent extends React.PureComponent<any, any> {
         })}>
           <span className={classnames({
             'reform-item-label-text': true,
-          })}>{label}{colon ? ':' : ''}</span>
+          })}>{`${label}${colon ? ':' : ''}`}</span>
         </section>
         <section className={classnames({ // wrap
           'reform-item-wrap': true,
