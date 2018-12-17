@@ -11,8 +11,8 @@ class Demo1 extends React.Component {
   render() {
     return (
       <>
-        <FormItem name="name" label="姓名"><Input /></FormItem>
-        <FormItem name="age" label="年龄"><Input /></FormItem>
+        <FormItem name="name" label="姓名" initialValue="deku"><Input /></FormItem>
+        <FormItem name="age" label="年龄" initialValue="12"><Input /></FormItem>
       </>
     )
   }

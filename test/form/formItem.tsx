@@ -1,10 +1,9 @@
 import * as React from 'react'
-import * as sinon from 'sinon'
 import { mount } from 'enzyme'
 import { Form, FormItem } from '../../src'
 import { Input } from 'antd'
 
-describe('component/form basic function', () => {
+describe('The Attributes FormItem should support', () => {
   let Demo: any
   // 错误边界校验
   // it('FormItem should throw error if not pass name', () => {
@@ -14,8 +13,8 @@ describe('component/form basic function', () => {
 
   //   Demo = Form()(Demo)
 
-  //   const styleForm = mount(<Demo />)
-  //   expect(styleForm.contains(<div>Error: please check the prop name in the FormElement</div>)).toEqual(true)
+  //   const wrapper = mount(<Demo />)
+  //   expect(wrapper.contains(<div>Error: please check the prop name in the FormElement</div>)).toEqual(true)
   // })
   it('FormItem should support style', () => {
     Demo = function() {
@@ -24,8 +23,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item').prop('style')).toEqual({ marginBottom: 16 })
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item').prop('style')).toEqual({ marginBottom: 16 })
   })
   it('FormItem should support label true', () => {
     Demo = function () {
@@ -34,8 +33,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item-label-text').contains('姓名:')).toEqual(true)
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item-label-text').contains('姓名:')).toEqual(true)
   })
   it('FormItem should support colon config false', () => {
     Demo = function () {
@@ -44,8 +43,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item-label-text').contains('姓名')).toEqual(true)
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item-label-text').contains('姓名')).toEqual(true)
   })
   it('FormItem should support inline', () => {
     Demo = function () {
@@ -54,8 +53,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item-inline').prop('className')).toEqual('reform-item reform-item-inline')
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item-inline').prop('className')).toEqual('reform-item reform-item-inline')
   })
   it('FormItem should support labelCol', () => {
     Demo = function () {
@@ -64,8 +63,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item-label').prop('className')).toEqual('reform-item-label col-6')
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item-label').prop('className')).toEqual('reform-item-label col-6')
   })
   it('FormItem should support wrapCol', () => {
     Demo = function () {
@@ -74,8 +73,8 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find('.reform-item-wrap').prop('className')).toEqual('reform-item-wrap col-15')
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find('.reform-item-wrap').prop('className')).toEqual('reform-item-wrap col-15')
   })
   it('FormItem should support disable', () => {
     Demo = function () {
@@ -84,7 +83,17 @@ describe('component/form basic function', () => {
 
     Demo = Form()(Demo)
 
-    const styleForm = mount(<Demo />)
-    expect(styleForm.find(Input).prop('disabled')).toEqual(false)
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find(Input).prop('disabled')).toEqual(false)
+  })
+  it('FormItem should support initialValue', () => {
+    Demo = function () {
+      return <FormItem name="name" initialValue="deku"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find(Input).prop('value')).toEqual('deku')
   })
 })

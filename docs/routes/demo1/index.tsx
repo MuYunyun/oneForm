@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Input, Checkbox, Row, Col } from 'antd'
 import BackGround from '../../components/Background/background'
 import './index.less'
-import FormDemo1 from './form'
+import Demo1 from './form'
 
 class Controller extends React.Component<any, any> {
   state = {
@@ -63,7 +63,7 @@ class Controller extends React.Component<any, any> {
             </Col>
           </Row>
         </BackGround>
-        <FormDemo1
+        <Demo1
           labelCol={labelCol}
           wrapCol={wrapCol}
           inline={inline}
