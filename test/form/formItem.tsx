@@ -86,4 +86,14 @@ describe('The Attributes FormItem should support', () => {
     const wrapper = mount(<Demo />)
     expect(wrapper.find(Input).prop('disabled')).toEqual(false)
   })
+  it('FormItem should support initialValue', () => {
+    Demo = function () {
+      return <FormItem name="name" initialValue="deku"><Input /></FormItem>
+    }
+
+    Demo = Form()(Demo)
+
+    const wrapper = mount(<Demo />)
+    expect(wrapper.find(Input).prop('value')).toEqual('deku')
+  })
 })

@@ -7,22 +7,26 @@ class FormElement extends React.PureComponent<any, any> {
   static formItem = null
   static contextType = FormContext
 
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      value: '',
+  changeFormData = (name: string, value: any) => {
+    if (!name) {
+      throw new Error('please check the prop name in the FormElement')
     }
+    this.context.formData.setFormItem(name, value)
+    this.context.changeFormData({
+      [name]: value,
+    })
   }
 
   onChange = (e: any) => {
     const { name } = this.props
-    if (!name) {
-      throw new Error('please check the prop name in the FormElement')
+    this.changeFormData(name, e.target.value)
+  }
+
+  componentDidMount = () => {
+    const { name, initialValue } = this.props
+    if (typeof(initialValue) === 'string') {
+      this.changeFormData(name, initialValue)
     }
-    this.context.formData.setFormItem(name, e.target.value)
-    this.context.changeFormData({
-      [name]: e.target.value,
-    })
   }
 
   render() {

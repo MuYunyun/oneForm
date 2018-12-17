@@ -38,8 +38,9 @@ class Demo1 extends React.Component {
 | 属性/方法 | 意义 |
 | :-: | :-: |
 | formData | 当前所有表单字段的数据映射 |
-| setFormItem(itemName, value) | 向表单写入数据, 配合状态管理库使用 |
+| setFormItem(itemName, value) | 向表单写入数据 |
 | getFormItem(itemName) | 获取某一个表单字段的值 |
+<!-- | reset() | 回到 initialValue 状态 | -->
 
 #### FormItem
 
@@ -52,4 +53,10 @@ class Demo1 extends React.Component {
 | labelCol | 表单的名字占位 | no | 8 |
 | wrapCol | 表单占位 | no | 16 |
 | disable | 是否禁用 | no | false |
+| initialValue | 初始(默认)值 | no | |
 
+### Test
+
+```
+npm test
+```

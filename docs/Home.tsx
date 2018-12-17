@@ -9,7 +9,8 @@ import Demo1 from './routes/demo1/index'
 import Demo2 from './routes/demo2/index'
 // import Demo3 from './routes/demo3/index'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Header, Content, Sider } = Layout
+// const { Header, Content, Footer, Sider } = Layout
 
 function Home() {
   return (
