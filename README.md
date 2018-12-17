@@ -1,4 +1,4 @@
-reform 是一个高效完成表单开发的 one for all 方案。
+daform 是一个高效完成表单开发的 one for all 方案。
 
 ### Philosophy
 
@@ -9,7 +9,15 @@ reform 是一个高效完成表单开发的 one for all 方案。
 * 不依赖第三方状态管理库
 * 可自由搭配第三方 UI 组件库
 
-### Basic Usage
+### Install
+
+```
+npm install daform
+```
+
+> 确保 React 版本为 ^16.6.3, 关于 React 16 特性可参考 [React 特性剪辑(版本 16.0 ~ 16.9)](https://github.com/dwd-fe/reForm/issues/10)
+
+### Demo
 
 ```js
 import React from 'react'

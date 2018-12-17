@@ -44,8 +44,9 @@ module.exports = {
   entry: [paths.libIndexJs],
   output: {
     path: paths.libBuild,
-    filename: 'reform.min.js',
+    filename: 'daform.min.js',
     publicPath: publicPath,
+    libraryTarget: 'umd',
   },
   resolve: {
     modules: ['node_modules', paths.appNodeModules].concat(
@@ -255,7 +256,7 @@ module.exports = {
           comments: false,
           // Turned on because emoji and regex is not minified properly using default
           // https://github.com/facebook/create-react-app/issues/2488
-          ascii_only: true,
+          ascii_only: true
         },
       },
       // Use multi-process parallel running to improve the build speed
