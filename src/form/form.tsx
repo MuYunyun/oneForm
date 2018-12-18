@@ -1,5 +1,5 @@
 import * as React from 'react'
-import FormContext from '../core/Context'
+import { FormContext } from '../core/Context'
 import FormData from '../core/formData'
 import validate from '../validate'
 

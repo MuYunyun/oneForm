@@ -7,7 +7,7 @@ import Navigator from './navigator'
 import Philosophy from './routes/philosophy/index'
 import Demo1 from './routes/demo1/index'
 import Demo2 from './routes/demo2/index'
-// import Demo3 from './routes/demo3/index'
+import Demo3 from './routes/demo3/index'
 
 const { Header, Content, Sider } = Layout
 // const { Header, Content, Footer, Sider } = Layout
@@ -16,7 +16,7 @@ function Home() {
   return (
     <Layout className='dui-antd-container'>
       <Header className='dui-antd-header'>
-        <Link to='/' >reForm</Link>
+        <Link to='/' >daForm</Link>
       </Header>
       <Content style={{ marginTop: '30px' }}>
         <Layout className='dui-antd-Layout'>
@@ -27,6 +27,7 @@ function Home() {
             <Route path="/philosophy" component={Philosophy} />
             <Route path="/demo1" component={Demo1} />
             <Route path="/demo2" component={Demo2} />
+            <Route path="/demo3" component={Demo3} />
           </Content>
         </Layout>
       </Content>

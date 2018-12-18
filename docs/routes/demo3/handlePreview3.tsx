@@ -10,10 +10,10 @@ import { Form, FormItem } from 'daForm'
 class Demo1 extends React.Component {
   render() {
     return (
-      <>
-        <FormItem name="name" label="姓名" initialValue="deku"><Input /></FormItem>
-        <FormItem name="age" label="年龄" initialValue="12"><Input /></FormItem>
-      </>
+      <Dynamic>
+        <FormItem name="name" label="姓名"><Input /></FormItem>
+        <FormItem name="age" label="年龄"><Input /></FormItem>
+      </Dynamic>
     )
   }
 }`
@@ -26,9 +26,8 @@ class HandlePreView extends React.Component<any, any> {
       <>
         <p>表单数据同步:</p>
         <pre className="code-background">
-          { JSON.stringify(formdata, null, 2) }
+          {JSON.stringify(formdata, null, 2)}
         </pre>
-        <p>代码示例:</p>
         <PreView jsxString={jsxString} />
       </>
     )

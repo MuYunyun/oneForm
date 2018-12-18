@@ -11,13 +11,25 @@ const jsxString =
       }
     },
   ],
+}
+
+@Form(validateConfig)
+class Demo1 extends React.Component {
+  render() {
+    return (
+      <>
+        <FormItem name="name" label="姓名" initialValue="deku"><Input /></FormItem>
+        <FormItem name="age" label="年龄" initialValue="12"><Input /></FormItem>
+      </>
+    )
+  }
 }`
 
 class HandlePreView extends React.Component<any, any> {
   render() {
     return (
       <>
-        <p>校验规则同 <a href="https://github.com/yiminghe/async-validator">async-validator</a>, 示例如下:</p>
+        <p>校验规则同 <a href="https://github.com/yiminghe/async-validator">async-validator</a>, 使用示例如下:</p>
         <PreView jsxString={jsxString} />
       </>
     )

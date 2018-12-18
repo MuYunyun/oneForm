@@ -18,8 +18,8 @@ class Demo2 extends React.Component<any, any> {
     return (
       <>
         <BackGround color="#e9e9c8" width="50%">
-          <FormItem name="name" label="姓名" {...this.props} labelCol="4" wrapCol="14"><Input /></FormItem>
-          <FormItem name="age" label="年龄" {...this.props} labelCol="4" wrapCol="14"><Input /></FormItem>
+          <FormItem name="name" label="姓名" labelCol="4" wrapCol="14"><Input /></FormItem>
+          <FormItem name="age" label="年龄" labelCol="4" wrapCol="14"><Input /></FormItem>
           <div className="col-4 inline-block"></div>
           <Button onClick={this.click} className="inline-block">提交</Button>
         </BackGround>

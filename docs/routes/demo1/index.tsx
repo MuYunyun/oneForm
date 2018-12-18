@@ -33,31 +33,31 @@ class Controller extends React.Component<any, any> {
           <Row>
             <Col span={3} className="control-col">
               <span>labelCol:</span>
-              <span className="reform-controller-config">
+              <span className="daForm-controller-config">
                 <Input type="number" value={labelCol} onChange={this.changeValue('labelCol')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>wrapCol:</span>
-              <span className="reform-controller-config">
+              <span className="daForm-controller-config">
                 <Input type="number" value={wrapCol} onChange={this.changeValue('wrapCol')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>inline:</span>
-              <span className="reform-controller-config">
+              <span className="daForm-controller-config">
                 <Checkbox checked={inline} onChange={this.changeStatus('inline')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>colon:</span>
-              <span className="reform-controller-config">
+              <span className="daForm-controller-config">
                 <Checkbox checked={colon} onChange={this.changeStatus('colon')} />
               </span>
             </Col>
             <Col span={3} className="control-col">
               <span>disabled:</span>
-              <span className="reform-controller-config">
+              <span className="daForm-controller-config">
                 <Checkbox checked={disabled} onChange={this.changeStatus('disabled')} />
               </span>
             </Col>

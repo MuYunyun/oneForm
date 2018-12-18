@@ -9,20 +9,22 @@ daform 是一个高效完成表单开发的 one for all 方案。
 * 不依赖第三方状态管理库
 * 可自由搭配第三方 UI 组件库
 
+> [issue](https://github.com/dwd-fe/daForm/issues/1)
+
 ### Install
 
 ```
 npm install daform
 ```
 
-> 确保 React 版本为 ^16.6.3, 关于 React 16 特性可参考 [React 特性剪辑(版本 16.0 ~ 16.9)](https://github.com/dwd-fe/reForm/issues/10)
+> 确保 React 版本为 ^16.6.3, 关于 React 16 特性可参考 [React 特性剪辑(版本 16.0 ~ 16.9)](https://github.com/dwd-fe/daForm/issues/10)
 
-### Demo
+### Basic Usage
 
 ```js
 import React from 'react'
 import { Input } from 'antd'
-import { Form, FormItem } from 'reform'
+import { Form, FormItem } from 'daForm'
 
 @Form()
 class Demo1 extends React.Component {
@@ -32,6 +34,29 @@ class Demo1 extends React.Component {
         <FormItem name="name" label="姓名"><Input /></FormItem>
         <FormItem name="age" label="年龄"><Input /></FormItem>
       </>
+    )
+  }
+}
+```
+
+### Dynamic Form
+
+daForm 内置了动态表单组件 `<Dynamic>`, 使用其可以快速完成增删配置需求。
+
+```js
+import React from 'react'
+import { Input } from 'antd'
+import { Form, FormItem } from 'daForm'
+
+@Form()
+class Demo1 extends React.Component {
+  render() {
+    const { form } = this.props
+    return (
+      <Dynamic>
+        <FormItem name="name" label="姓名"><Input /></FormItem>
+        <FormItem name="age" label="年龄"><Input /></FormItem>
+      </Dynamic>
     )
   }
 }

@@ -15,23 +15,23 @@ class FormContent extends React.PureComponent<any, any> {
     } = this.props
     return (
       <div style={style} className={classnames({
-        'reform-item': true,
-        'reform-item-inline': inline
+        'daForm-item': true,
+        'daForm-item-inline': inline
       })}>
         <section className={classnames({ // label
-          'reform-item-label': true,
+          'daForm-item-label': true,
           [`col-${labelCol}`]: true,
         })}>
           <span className={classnames({
-            'reform-item-label-text': true,
+            'daForm-item-label-text': true,
           })}>{`${label}${colon ? ':' : ''}`}</span>
         </section>
         <section className={classnames({ // wrap
-          'reform-item-wrap': true,
+          'daForm-item-wrap': true,
           [`col-${wrapCol}`]: true
         })}>
           <div>{formItem}</div>
-          <div className="reform-item-wrap-error">{errorMsg}</div>
+          <div className="daForm-item-wrap-error">{errorMsg}</div>
         </section>
       </div>
     )

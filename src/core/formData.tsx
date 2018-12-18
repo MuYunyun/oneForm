@@ -34,6 +34,11 @@ class FormData {
     }
   }
 
+  deleteFormItem(itemName: string) {
+    delete this._formdata[itemName]
+    delete this.formdata[itemName]
+  }
+
   setMappingValue = (itemName: string) => (name: string, value: any) => {
     this._formdata[itemName][name] = value
     if (name === 'domMapping') {

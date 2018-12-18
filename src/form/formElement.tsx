@@ -1,5 +1,5 @@
 import * as React from 'react'
-import FormContext from '../core/Context'
+import { FormContext } from '../core/Context'
 import FormContent from './formContent'
 import './index.less'
 

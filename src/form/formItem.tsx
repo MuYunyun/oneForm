@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import ErrorBoundary from '../error/errorBoundary'
 import FormElement from './formElement'
 import './index.less'
