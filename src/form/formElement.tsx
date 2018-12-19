@@ -30,6 +30,7 @@ class FormElement extends React.PureComponent<any, any> {
   }
 
   render() {
+    console.log('111222333', 'FormElement')
     let errorMsg = ''
     const {
       style,

@@ -1,4 +1,4 @@
-daform 是一个高效完成表单开发的 one for all 方案。
+daform 是一个高效开发表单的 one for all 方案。
 
 ### Philosophy
 
@@ -10,6 +10,8 @@ daform 是一个高效完成表单开发的 one for all 方案。
 * 可自由搭配第三方 UI 组件库
 
 > [issue](https://github.com/dwd-fe/daForm/issues/1)
+
+> 文档开发中...
 
 ### Install
 
@@ -51,7 +53,6 @@ import { Form, FormItem } from 'daForm'
 @Form()
 class Demo1 extends React.Component {
   render() {
-    const { form } = this.props
     return (
       <Dynamic>
         <FormItem name="name" label="姓名"><Input /></FormItem>

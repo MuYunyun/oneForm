@@ -7,7 +7,7 @@ const Form = (validateConfig?: any) => (WrapperComponent: any) => {
   let errorInfo: object = {}
   return class extends React.Component<any, any> {
     changeFormData = (changeData: any) => {
-      errorInfo = Object.assign(errorInfo, validate(validateConfig || {}, changeData))
+      errorInfo = changeData === null ? {} : Object.assign(errorInfo, validate(validateConfig || {}, changeData))
       this.setState({
         errorInfo,
       })
