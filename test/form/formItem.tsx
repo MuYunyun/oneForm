@@ -24,7 +24,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item').prop('style')).toEqual({ marginBottom: 16 })
+    expect(wrapper.find('.daForm-item').prop('style')).toEqual({ marginBottom: 16 })
   })
   it('FormItem should support label true', () => {
     Demo = function () {
@@ -34,7 +34,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item-label-text').contains('姓名:')).toEqual(true)
+    expect(wrapper.find('.daForm-item-label-text').contains('姓名:')).toEqual(true)
   })
   it('FormItem should support colon config false', () => {
     Demo = function () {
@@ -44,7 +44,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item-label-text').contains('姓名')).toEqual(true)
+    expect(wrapper.find('.daForm-item-label-text').contains('姓名')).toEqual(true)
   })
   it('FormItem should support inline', () => {
     Demo = function () {
@@ -54,7 +54,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item-inline').prop('className')).toEqual('reform-item reform-item-inline')
+    expect(wrapper.find('.daForm-item-inline').prop('className')).toEqual('daForm-item daForm-item-inline')
   })
   it('FormItem should support labelCol', () => {
     Demo = function () {
@@ -64,7 +64,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item-label').prop('className')).toEqual('reform-item-label col-6')
+    expect(wrapper.find('.daForm-item-label').prop('className')).toEqual('daForm-item-label col-6')
   })
   it('FormItem should support wrapCol', () => {
     Demo = function () {
@@ -74,7 +74,7 @@ describe('The Attributes FormItem should support', () => {
     Demo = Form()(Demo)
 
     const wrapper = mount(<Demo />)
-    expect(wrapper.find('.reform-item-wrap').prop('className')).toEqual('reform-item-wrap col-15')
+    expect(wrapper.find('.daForm-item-wrap').prop('className')).toEqual('daForm-item-wrap col-15')
   })
   it('FormItem should support disable', () => {
     Demo = function () {

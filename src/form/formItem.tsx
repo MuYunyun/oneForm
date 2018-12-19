@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import ErrorBoundary from '../error/errorBoundary'
 import FormElement from './formElement'
 import './index.less'
@@ -12,6 +12,7 @@ interface FormItemObjectType {
   wrapCol?: string | number,
   disable?: boolean,
   style?: object,
+  className?: string,
   initialValue?: string,
 }
 
