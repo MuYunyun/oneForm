@@ -7,7 +7,7 @@ import { Input } from 'antd' // 可以是其它 UI 库
 import { Form, FormItem } from 'daForm'
 
 @Form()
-class Demo1 extends React.Component {
+class Demo3 extends React.Component {
   render() {
     return (
       <Dynamic>

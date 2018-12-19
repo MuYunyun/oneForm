@@ -12,6 +12,7 @@ interface FormItemObjectType {
   wrapCol?: string | number,
   disable?: boolean,
   style?: object,
+  className?: string,
   initialValue?: string,
 }
 

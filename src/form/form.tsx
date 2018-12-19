@@ -20,10 +20,16 @@ const Form = (validateConfig?: any) => (WrapperComponent: any) => {
     }
 
     render() {
-      const { formData } = this.state
+      const { formData, errorInfo } = this.state
+      let errorFields = {}
+      Object.keys(errorInfo).forEach((r: any) => {
+        if (errorInfo[r] !== '') {
+          errorFields[r] = errorInfo[r]
+        }
+      })
       return (
         <FormContext.Provider value={this.state}>
-          <WrapperComponent form={formData} {...this.props} />
+          <WrapperComponent form={formData} errorFields={errorFields} {...this.props} />
         </FormContext.Provider>
       )
     }

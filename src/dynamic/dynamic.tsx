@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { FormContext, DynamicContext } from '../core/Context'
+import { FormContext } from '../core/Context'
 
-let FormGlobal: any
 let nameArr: any = []
 
 class Dynamic extends React.Component<any, any> {
+  static contextType = FormContext
+
   state = {
-    configCount: 1,
+    configCount: this.props.initialValue ? this.props.initialValue.length : 1,
   }
 
   addConfig = () => {
@@ -16,7 +17,7 @@ class Dynamic extends React.Component<any, any> {
   }
 
   delConfig = (delIndex: number) => {
-    const { formData, changeFormData } = FormGlobal
+    const { formData, changeFormData } = this.context
     const { _formdata, formdata } = formData
     for (let i = delIndex; i < this.state.configCount - 1; i++) {
       nameArr.map((r: string) => {
@@ -32,22 +33,45 @@ class Dynamic extends React.Component<any, any> {
     changeFormData(null) // 动态表单的校验后面再填
   }
 
+  createReactForm = (formContent: any, index: number) => {
+    if (formContent.type.name === 'FormItem') {
+      nameArr.push(formContent.props.name)
+      return React.cloneElement(formContent, {
+        name: `${formContent.props.name}${index}`,
+        key: `${formContent.props.name}${index}`,
+        tag: new Object // 日后根据情况进行局部渲染的优化
+      })
+    }
+    return formContent
+  }
+
+  componentDidMount() {
+    const { initialValue } = this.props
+    let tmpObj = {}
+    if (Array.isArray(initialValue)) {
+      initialValue.forEach((row: any) => {
+        Object.keys(row).forEach((r: any) => {
+          this.context.formData.setFormItem(r, row[r])
+          tmpObj[r] = row[r]
+        })
+      })
+      this.context.changeFormData(tmpObj)
+    }
+  }
+
   render() {
     const { configCount } = this.state
     const { children } = this.props
     const tmpArr = new Array(configCount).fill(1)
     const dynamicForm = tmpArr.map((v, index) => {
-      const handleChildren = Array.isArray(children) && children.map((r: any) => {
-        if (r.type.name === 'FormItem') {
-          nameArr.push(r.props.name)
-          return React.cloneElement(r, {
-            name: `${r.props.name}${index}`,
-            key: `${r.props.name}${index}`,
-            tag: new Object // 日后根据情况进行局部渲染的优化
-          })
-        }
-        return r
-      })
+      let handleChildren
+      if (Array.isArray(children)) {
+        handleChildren = children.map((r: any) => {
+          return this.createReactForm(r, index)
+       })
+      } else {
+        handleChildren = this.createReactForm(children, index)
+      }
       nameArr = Array.from(new Set(nameArr))
       return (<div key={index}>{
         handleChildren
@@ -56,15 +80,12 @@ class Dynamic extends React.Component<any, any> {
 
     return (
       <FormContext.Consumer>
-        {(global: any) => {
-          FormGlobal = global
-          return (
-            <DynamicContext.Provider value={global}>
-              {dynamicForm}
-              <div onClick={this.addConfig} style={{ textAlign: 'center' }}>新增配置</div>
-            </DynamicContext.Provider>
-          )
-        }}
+        {(global: any) => (
+          <>
+            {dynamicForm}
+            <div onClick={this.addConfig} style={{ textAlign: 'center' }}>新增配置</div>
+          </>
+        )}
       </FormContext.Consumer>
     )
   }

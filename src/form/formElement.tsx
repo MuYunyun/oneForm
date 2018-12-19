@@ -19,7 +19,8 @@ class FormElement extends React.PureComponent<any, any> {
 
   onChange = (e: any) => {
     const { name } = this.props
-    this.changeFormData(name, e.target.value)
+    // antd 的 Input 与 select 框
+    this.changeFormData(name, e.target ? e.target.value : e)
   }
 
   componentDidMount = () => {
@@ -30,7 +31,6 @@ class FormElement extends React.PureComponent<any, any> {
   }
 
   render() {
-    console.log('111222333', 'FormElement')
     let errorMsg = ''
     const {
       style,
@@ -55,6 +55,7 @@ class FormElement extends React.PureComponent<any, any> {
       value,
       disabled,
       onChange: this.onChange,
+      className: 'daForm-item-form',
     }
     if (React.Children.only(children) && (ifChange || this.context.formData.getMappingValue(name)('disabled') !== disabled)) {
       FormElement.formItem = React.cloneElement(childrenAsElement, formProps)

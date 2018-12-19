@@ -14,6 +14,12 @@ class FormData {
   }
 
   setFormItem(itemName: string, value: any) {
+    if (!this._formdata[itemName]) {
+      this._formdata[itemName] = {
+        value: '',
+        ifChange: true,
+      }
+    }
     this._formdata[itemName].value = value
     this._formdata[itemName].ifChange = true
     this.formdata[itemName] = value

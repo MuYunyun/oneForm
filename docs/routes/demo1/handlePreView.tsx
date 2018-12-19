@@ -24,11 +24,11 @@ class HandlePreView extends React.Component<any, any> {
     const { formdata } = form
     return (
       <>
-        <p>表单数据同步:</p>
+        <p>表单数据可以通过 this.props.form.formdata 获取:</p>
         <pre className="code-background">
           { JSON.stringify(formdata, null, 2) }
         </pre>
-        <p>代码示例:</p>
+        <p>基本用法:</p>
         <PreView jsxString={jsxString} />
       </>
     )

@@ -69,6 +69,7 @@ class Controller extends React.Component<any, any> {
           inline={inline}
           colon={colon}
           disabled={disabled}
+          style={{ width: '230px' }}
         />
       </>
     )

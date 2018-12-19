@@ -67,16 +67,20 @@ class Demo1 extends React.Component {
 
 #### Form
 
-当使用 Form 装饰表单组件后, 该表单组件便拥有了可操作所有表单数据的 form 属性。form 中提供的 api 见如下表格。
+经过 `Form` 装饰的组件后具有 `form` 和 `errorFields` 对象。
+
+* `form` 提供的 api 见如下表格:
 
 | 属性/方法 | 意义 |
 | :-: | :-: |
 | formData | 当前所有表单字段的数据映射 |
-| setFormItem(itemName, value) | 向表单写入数据 |
 | getFormItem(itemName) | 获取某一个表单字段的值 |
-<!-- | reset() | 回到 initialValue 状态 | -->
+
+* `errorFields` 包含当前表单的报错消息, 其等同于 [async-validator](https://github.com/yiminghe/async-validator#usage) 中的 fields 属性。
 
 #### FormItem
+
+`FormItem` 接受的属性见如下表格:
 
 | 属性 | 意义 | 必填 | 默认 |
 | :-: | :-: | :-: | :-: |
@@ -88,6 +92,14 @@ class Demo1 extends React.Component {
 | wrapCol | 表单占位 | no | 16 |
 | disable | 是否禁用 | no | false |
 | initialValue | 初始(默认)值 | no | |
+
+#### Dynamic
+
+`Dynamic` 接受的属性见如下表格:
+
+| 属性 | 意义 | 必填 | 默认 |
+| :-: | :-: | :-: | :-: |
+| initialValue | 动态表单的初始值(数组) | no | |
 
 ### Test
 
